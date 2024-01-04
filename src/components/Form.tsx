@@ -1,23 +1,23 @@
 
 function Form() {
   return (
-   <form>
-    <div>
-      <label>Nome</label>
-        <input type="text" placeholder="Digite seu nome" />
+   <form className="flex flex-col gap-3">
+    <div className="flex flex-col">
+      <label className="text-sn"  htmlFor="name">Nome</label>
+        <input type="text" placeholder="Digite seu nome" className="rounded-lg  py-2 px-2 text-sm  placeholder:text-stone-400 placeholder:text-sm" />
     </div>
-    <div>
-      <label>E-mail</label>
-        <input type="email" placeholder="Insira seu melhor e-mail" />
+    <div className="flex flex-col">
+      <label className="text-sn"  htmlFor="email">E-mail</label>
+        <input type="email" placeholder="Insira seu melhor e-mail" className="rounded-lg  py-2 px-2 text-sm  placeholder:text-stone-400 placeholder:text-sm" />
     </div>
-    <div>
-      <a href="">Leia os termos</a>
-      <div>
-        <input type="checkbox" />
-        <label>Concordo com os termos</label>
+    <div className="flex flex-col">
+      <a href="" className="text-xs underline mb-2">Leia os termos</a>
+      <div className="flex gap-2 items-center">
+        <input type="checkbox" className="cursor-pointer" />
+        <label className="text-sn"  htmlFor="agree">Concordo com os termos</label>
       </div>
     </div>
-    <button>Cadastrar</button>
+    <button type="submit" className="bg-slate-600 hover:bg-slate-500 font-medium text-sm py-2 px-4 rounded-lg text-white">Cadastrar</button>
    </form>
   )
 }
