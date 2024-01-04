@@ -11,6 +11,7 @@ const Form = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
+    setError(null)
 
     const data: User = {
       name,
@@ -21,19 +22,29 @@ const Form = () => {
     const validateErrors = validate(data)
 
     if (Object.keys(validateErrors).length > 0) {
-      alert('tem erros')
+      setError(validateErrors)
+      return
     }
-
+    alert('Obrigado por se increver!')
+    setEmail('')
+    setName('')
+    setAgree(false)
   }
   return (
     <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
       <div className="flex flex-col">
         <label className="text-sn" htmlFor="name">Nome</label>
         <input type="text" placeholder="Digite seu nome" className="rounded-lg  py-2 px-2 text-sm  placeholder:text-stone-400 placeholder:text-sm"  value={name} onChange={(e) => setName(e.target.value)}/>
+        {error?.name && (
+          <small className="text-red-500 mt-1">{error?.name}</small>
+        )}
       </div>
       <div className="flex flex-col">
         <label className="text-sn" htmlFor="email">E-mail</label>
         <input type="email" placeholder="Insira seu melhor e-mail" className="rounded-lg  py-2 px-2 text-sm  placeholder:text-stone-400 placeholder:text-sm" value={email} onChange={(e) => setEmail(e.target.value)} />
+        {error?.email && (
+          <small className="text-red-500 mt-1">{error?.email}</small>
+        )}
       </div>
       <div className="flex flex-col">
         <a href="" className="text-xs underline mb-2">Leia os termos</a>
@@ -41,6 +52,9 @@ const Form = () => {
           <input type="checkbox" className="cursor-pointer" checked={agree} onChange={(e) => setAgree(e.target.checked)}/>
           <label className="text-sn" htmlFor="agree">Concordo com os termos</label>
         </div>
+        {error?.agree && (
+          <small className="text-red-500 mt-1">{error?.agree}</small>
+        )}
       </div>
       <button type="submit" className="bg-slate-600 hover:bg-slate-500 font-medium text-sm py-2 px-4 rounded-lg text-white">Cadastrar</button>
     </form>
